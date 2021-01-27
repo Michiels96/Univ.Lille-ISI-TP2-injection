@@ -14,14 +14,6 @@ Vous pouvez aussi utiliser l'image OVA disponible sur: https://nextcloud.univ-li
 
 ## Préparation
 
-### Récupération du dépôt git
-
-Pour récupérer le dépôt git, ouvrez un terminal et placez vous dans le dossier de votre choix, puis tapez la commande suivante:
-
-```
-git clone https://gitlab-etu.fil.univ-lille1.fr/ballabriga/applipythonvulnerable
-```
-
 Dans ce dépôt, vouz trouverez le fichier `serveur.py` contenant le source python du serveur vulnérable.
 
 ### Préparation d'un environnement virtuel Python3
