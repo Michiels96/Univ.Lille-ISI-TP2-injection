@@ -49,12 +49,23 @@ Si le test échoue, je renvois une string indiquant une erreur 400. (mauvaise re
 ## Question 5
 
 * Commande curl pour afficher une fenetre de dialog. 
+´´´
+curl 'http://127.0.0.1:8080/' --data-raw "chaine=%3Cscript%3Ealert%28%22hello%22%29%3C%2Fscript%3E&submit=OK"
+´´´
 
 * Commande curl pour lire les cookies
+curl 'http://127.0.0.1:8080/' --data-raw "chaine=%3Cscript%3E%0D%0Adocument.cookie+%3D+%22username%3DJohn+Doe%22%3B+%0D%0Aalert%28document.cookie%29%3B%0D%0Adocument.location.replace%28%22http%3A%2F%2F127.0.0.1%3A8090%22%29%3B%0D%0A%3C%2Fscript%3E&submit=OK"
+
 
 ## Question 6
 
 Rendre un fichier server_xss.py avec la correction de la
 faille. Expliquez la demarche que vous avez suivi.
+
+La correction du serveur.py pour la faille xss est exactement la même que pour l'injection sql.
+On fait d'abord passer l'entrée utilisateur de l'input par un regex. (Ce qui échappe les caractères spéciaux).
+un regex spécial pour une faille xss est d'échapper la balise script ainsi: re.search("^<script>", postChaine) et de tester un if contraire ('!')
+pour à tout prix éviter d'injecter une balise <script> dans le code.
+Puis on exécute la requete sql avec un paramètre de type string sécurisé.
 
 
