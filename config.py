@@ -2,5 +2,5 @@
 
 DB_HOST="localhost"
 DB_USER="pouet"
-DB_NAME="isitp"
+DB_NAME="TPISI"
 DB_PASS="pouet"
