@@ -62,7 +62,9 @@ Pour créer la table qui servira à l'application, connectez vous à votre base 
 ```
 CREATE TABLE chaines (
 	id int NOT NULL AUTO_INCREMENT, 
-	txt varchar(255) not null, PRIMARY KEY(id)
+	txt varchar(255) not null, 
+	who varchar(255) not null,
+	PRIMARY KEY(id)
 );
 ```
 
@@ -100,6 +102,8 @@ Ensuite, allez sur `http://localhost:8080` avec votre navigateur, et testez le f
  * Regardez le source de la page web
  * Regardez le source du programme serveur.py 
 
+L'application permet d'inserer des chaines dans une table de la base de données (dans la colonne txt), tout en loggant l'adresse IP de la personne ayant envoyé cette chaine (dans la colonne who)
+
 Vous pouvez regarder la documentation de CherryPy sur https://cherrypy.org/ et la documentation du connecteur MySQL python sur https://dev.mysql.com/doc/connector-python/en/
 
 ### Trouver une première vulnérabilité (injection SQL)
@@ -113,6 +117,11 @@ requete = "SELECT * FROM table WHERE champ='" + valeur "';"
 
 Si la valeur donnée par l'utilisateur est: `'; <autre commande SQL>; --`, alors la variable requete
 aura la valeur suivante: `SELECT * FROM table WHERE champ=''; <autre commande SQL>; --';` et l'autre commande SQL sera executée.
+
+Sans rajouter de deuxieme commmande à executer, il est possible en général d'altérer la requete SQL pour pouvoir faire des comportements qui n'ont pas été prévus.
+
+Ainsi, par exemple, si la valeur donnée par l'utilisateur est `' OR 1=1 --`, alors
+la requete SQL executée sera: `SELECT * FROM table WHERE champ='' OR 1=1`, ce qui renverra toute les données de la table.
 
 Examinez le source `serveur.py` pour trouver une vulnérabilité d'injection SQL. Pour vous aider, vous pouvez aussi afficher la requête MySQL en rajoutant un `print(requete)` dans la méthode `index`.
 
@@ -131,7 +140,7 @@ Essayez d'insérer dans la base de données des chaines qui comportent des carac
 
 #### Question 3 : Exploitation de la vulnérabilité 
 
-En utilisant `curl`, et si besoin après avoir révisé le cours sur les injections SQL, réalisez une injection SQL qui va effacer tout le contenu de la table. Vérifiez ensuite que cela a fonctionné et que votre table est vide.
+En utilisant `curl`, et si besoin après avoir révisé le cours sur les injections SQL, réalisez une injection SQL qui insérer une chaine dans la base de données, tout en faisant en sorte que le champ `who` soit rempli avec ce que vous aurez décidé (et non pas votre adresse IP). Verifiez que cela a fonctionné ensuite.
 
 L'exploitation d'injections SQL n'est pas limitée à la destruction de données. En supposant l'existence d'une autre table dans la base, imaginez un moyen d'utiliser cette faille d'injection SQL pour obtenir des informations sur les données de cette autre table (il n'est pas demandé de l'implémenter, mais d'expliquer une approche envisageable)
 
