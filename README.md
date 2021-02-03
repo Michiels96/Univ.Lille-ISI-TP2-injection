@@ -99,8 +99,8 @@ Vous devrez garder ce terminal ouvert pendant toute l'utilisation du serveur. Po
 
 Ensuite, allez sur `http://localhost:8080` avec votre navigateur, et testez le fonctionnement de la page. Notamment:
  * Testez l'ajout d'une donnée via le formulaire, et vérifiez qu'elle est rajoutée en base de donnée
- * Regardez le source de la page web
- * Regardez le source du programme serveur.py 
+ * Regardez le code source de la page web
+ * Regardez le code source du programme serveur.py 
 
 L'application permet d'inserer des chaines dans une table de la base de données (dans la colonne txt), tout en loggant l'adresse IP de la personne ayant envoyé cette chaine (dans la colonne who)
 
@@ -108,7 +108,7 @@ Vous pouvez regarder la documentation de CherryPy sur https://cherrypy.org/ et l
 
 ### Trouver une première vulnérabilité (injection SQL)
 
-Rappel: la vulnérabilité d'injection SQL survient lorsqu'une requête SQL est construite de manière non sécurisée, par exemple en par concaténation de chaines, à partir d'élements fourni par un utilisateur potentiellement malveillant. 
+Rappel: la vulnérabilité d'injection SQL survient lorsqu'une requête SQL est construite de manière non sécurisée, par exemple par concaténation de chaines, à partir d'élements fourni par un utilisateur potentiellement malveillant. 
 
 Ainsi, si on imagine une requete construite comme ceci, alors que la variable `valeur` est controlée par l'utilisateur:
 ```
